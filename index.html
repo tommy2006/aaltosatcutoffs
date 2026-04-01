@@ -5,16 +5,22 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>University Cutoff Scores</title>
+  <title>Aalto SAT Cutoffs</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
   <style>
     body { padding-top: 2rem; }
+    .last-updated { font-size: 0.85em; color: var(--pico-muted-color); margin-bottom: 2rem; }
+    .legend { font-size: 0.9em; margin-top: 2rem; padding: 1rem; background-color: var(--pico-form-element-background-color); border-radius: var(--pico-border-radius); }
+    .legend ul { margin-bottom: 0; }
+    .disclaimer { color: var(--pico-muted-color); font-size: 0.85em; text-align: center; margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--pico-muted-border-color); }
   </style>
 </head>
 <body>
   <main class="container">
-    <h1>Lowest Accepted Scores</h1>
+    <h1>Lowest Accepted SAT Scores</h1>
     <p>Current cutoffs for admission group 1 and Excellence Scholarships.</p>
+    
+    <div class="last-updated">Last Information Update: 02:00 2 April 2026 UTC+3</div>
     
     <table class="striped">
       <thead>
@@ -34,6 +40,19 @@
         {% endfor %}
       </tbody>
     </table>
+
+    <div class="legend">
+      <strong>Score Notations:</strong>
+      <ul>
+        <li><strong>+</strong> : Someone failed the scholarship at this score. Please contact us if you got offered, or know someone who did.</li>
+        <li><strong>?</strong> : Someone got the scholarship at this score. We are looking for lower scoring lucky people.</li>
+        <li><strong>(Math)</strong> : Indicates a specific known minimum sub-score required in the Math section.</li>
+      </ul>
+    </div>
   </main>
+
+  <footer class="container disclaimer">
+    <p><strong>Disclaimer:</strong> This data is a crowdsourced effort compiled by students and applicants. It is <strong>not</strong> affiliated with, endorsed by, or representative of Aalto University. Official cutoff scores may vary.</p>
+  </footer>
 </body>
 </html>
