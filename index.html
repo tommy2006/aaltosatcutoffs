@@ -1,33 +1,104 @@
 ---
 ---
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Aalto SAT Cutoffs</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
+
   <style>
-    body { padding-top: 2rem; }
-    .last-updated { font-size: 0.85em; color: var(--pico-muted-color); margin-bottom: 2rem; }
-    .legend { font-size: 0.9em; margin-top: 2rem; padding: 1rem; background-color: var(--pico-form-element-background-color); border-radius: var(--pico-border-radius); }
+    /* Futuristic Theme Overrides */
+    :root {
+      --pico-font-family-base: 'Space Grotesk', sans-serif;
+      --pico-background-color: #090c10; /* Deep space background */
+      --pico-color: #c9d1d9; /* Tech gray text */
+      --pico-primary: #00ffcc; /* Neon cyan */
+      --pico-primary-hover: #00ccaa;
+      --pico-primary-background: rgba(0, 255, 204, 0.1);
+      --pico-form-element-background-color: #161b22;
+    }
+
+    body { padding-top: 4rem; position: relative; }
+    
+    /* Language Toggle Bar - Hidden when scrolling down */
+    #lang-bar {
+      position: absolute;
+      top: 0;
+      right: 0;
+      padding: 1rem;
+      display: flex;
+      gap: 15px;
+    }
+    .lang-btn {
+      background: none; border: none; color: var(--pico-color); 
+      cursor: pointer; font-family: inherit; font-size: 0.9rem;
+      padding: 0; transition: color 0.2s;
+    }
+    .lang-btn:hover { color: var(--pico-primary-hover); background: transparent; }
+    .lang-btn.active { color: var(--pico-primary); font-weight: bold; text-shadow: 0 0 5px rgba(0,255,204,0.5); }
+
+    /* Language Hiding Logic */
+    body:not(.lang-en) .en,
+    body:not(.lang-fi) .fi,
+    body:not(.lang-vi) .vi {
+      display: none !important;
+    }
+
+    .last-updated { font-size: 0.85em; color: var(--pico-primary); margin-bottom: 2rem; }
+    .legend { font-size: 0.9em; margin-top: 2rem; padding: 1rem; background-color: var(--pico-form-element-background-color); border-radius: var(--pico-border-radius); border-left: 3px solid var(--pico-primary); }
     .legend ul { margin-bottom: 0; }
-    .disclaimer { color: var(--pico-muted-color); font-size: 0.85em; text-align: center; margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--pico-muted-border-color); }
+    section { margin-top: 4rem; }
+    .discord-card { background-color: var(--pico-primary-background); padding: 1.5rem; border-radius: var(--pico-border-radius); border: 1px solid var(--pico-primary); text-align: center; margin-top: 2rem;}
+    .discord-card a { font-weight: bold; }
+    .disclaimer { color: #8b949e; font-size: 0.85em; text-align: center; margin-top: 4rem; padding-top: 2rem; border-top: 1px solid #30363d; }
   </style>
 </head>
-<body>
+
+<body class="lang-en">
+
+  <div id="lang-bar">
+    <button id="btn-en" class="lang-btn active" onclick="setLang('en')">🇬🇧 EN</button>
+    <button id="btn-fi" class="lang-btn" onclick="setLang('fi')">🇫🇮 FI</button>
+    <button id="btn-vi" class="lang-btn" onclick="setLang('vi')">🇻🇳 VI</button>
+  </div>
+
   <main class="container">
-    <h1>Lowest Accepted SAT Scores</h1>
-    <p>Current cutoffs for admission group 1 and Excellence Scholarships.</p>
     
-    <div class="last-updated">Last Information Update: 02:00 2 April 2026 UTC+3</div>
+    <h1 class="en">Lowest Accepted SAT Scores</h1>
+    <h1 class="fi">Alimmat Hyväksytyt SAT-pisteet</h1>
+    <h1 class="vi">Điểm Chuẩn SAT Nhập Học Thấp Nhất</h1>
+
+    <p class="en">Current cutoffs for admission group 1 and Excellence Scholarships.</p>
+    <p class="fi">Nykyiset pisterajat valintaryhmässä 1 ja Excellence Scholarships -stipendeissä.</p>
+    <p class="vi">Điểm chuẩn hiện tại cho nhóm xét tuyển 1 và Học bổng Excellence Scholarships.</p>
+    
+    <div class="last-updated">
+      <span class="en">Last Information Update:</span>
+      <span class="fi">Tiedot Päivitetty Viimeksi:</span>
+      <span class="vi">Cập nhật thông tin lần cuối:</span>
+      02:00 2 April 2026 UTC+3
+    </div>
     
     <table class="striped">
       <thead>
         <tr>
-          <th>Program</th>
-          <th>Admission Cutoff</th>
-          <th>Scholarship Cutoff</th>
+          <th class="en">Program</th>
+          <th class="fi">Hakukohde</th>
+          <th class="vi">Ngành học</th>
+
+          <th class="en">Admission Cutoff</th>
+          <th class="fi">Valintaraja</th>
+          <th class="vi">Điểm chuẩn</th>
+
+          <th class="en">Scholarship Cutoff</th>
+          <th class="fi">Stipendiraja</th>
+          <th class="vi">Điểm học bổng</th>
         </tr>
       </thead>
       <tbody>
@@ -42,44 +113,120 @@
     </table>
 
     <div class="legend">
-      <strong>Score Notations:</strong>
+      <strong class="en">Score Notations:</strong>
+      <strong class="fi">Pistemerkinnät:</strong>
+      <strong class="vi">Ghi chú điểm:</strong>
       <ul>
-        <li><strong>+</strong> : Someone failed the scholarship at this score. Please contact us if you got offered, or know someone who did.</li>
-        <li><strong>?</strong> : Someone got the scholarship at this score. We are looking for lower scoring lucky people.</li>
-        <li><strong>(Math)</strong> : Indicates a specific known minimum sub-score required in the Math section.</li>
+        <li><strong>+</strong> : 
+          <span class="en">Someone failed the scholarship at this score. Please contact us if you got offered, or know someone who did.</span>
+          <span class="fi">Joku jäi ilman stipendiä tällä pistemäärällä. Ota yhteyttä, jos sait stipendin tai tunnet jonkun, joka sai.</span>
+          <span class="vi">Có người không đạt học bổng ở mức điểm này. Vui lòng liên hệ với chúng tôi nếu bạn được nhận, hoặc biết ai đó được nhận.</span>
+        </li>
+        <li><strong>?</strong> : 
+          <span class="en">Someone got the scholarship at this score. We are looking for lower scoring lucky people.</span>
+          <span class="fi">Joku sai stipendin tällä pistemäärällä. Etsimme alhaisemmilla pisteillä sisäänpäässeitä.</span>
+          <span class="vi">Có người đạt học bổng ở mức điểm này. Chúng tôi đang tìm kiếm những bạn trúng tuyển với mức điểm thấp hơn.</span>
+        </li>
+        <li><strong>(Math)</strong> : 
+          <span class="en">Indicates a specific known minimum sub-score required in the Math section.</span>
+          <span class="fi">Tarkoittaa vaadittua vahvistettua vähimmäispistemäärää matematiikan osiossa.</span>
+          <span class="vi">Biểu thị điểm số tối thiểu đã biết cần thiết cho phần Toán.</span>
+        </li>
       </ul>
     </div>
 
+    <section class="discord-card">
+      <h2 class="en" style="margin-bottom: 0.5rem;">Join the Discord Server</h2>
+      <h2 class="fi" style="margin-bottom: 0.5rem;">Liity Discord-palvelimelle</h2>
+      <h2 class="vi" style="margin-bottom: 0.5rem;">Tham gia máy chủ Discord</h2>
+      
+      <p class="en">Connect with other applicants, share resources, and get the latest updates!</p>
+      <p class="fi">Ota yhteyttä muihin hakijoihin, jaa materiaaleja ja seuraa uusimpia päivityksiä!</p>
+      <p class="vi">Kết nối với các ứng viên khác, chia sẻ tài nguyên và cập nhật thông tin mới nhất!</p>
+      
+      <a href="https://discord.gg/wcusD5HJpA" target="_blank" role="button">
+        <span class="en">Join "Applicants to Aalto"</span>
+        <span class="fi">Liity "Applicants to Aalto" -ryhmään</span>
+        <span class="vi">Tham gia "Applicants to Aalto"</span>
+      </a>
+    </section>
+
     <section id="contribute">
-      <h2>Contribute Data</h2>
-      <p>Because these specific cutoff scores are not officially published, we rely on crowdsourcing from admitted students and friends of. If you have confirmed information to share or a correction to make, please reach out:</p>
+      <h2 class="en">Contribute Data</h2>
+      <h2 class="fi">Osallistu tietojen keräämiseen</h2>
+      <h2 class="vi">Đóng góp dữ liệu</h2>
+      
+      <p class="en">Because these specific cutoff scores are not officially published, we rely on crowdsourcing from admitted students and friends of. If you have confirmed information to share or a correction to make, please reach out:</p>
+      <p class="fi">Koska näitä pisterajoja ei julkaista virallisesti, luotamme opiskelijoiden ja heidän ystäviensä jakamaan tietoon. Jos haluat jakaa vahvistettua tietoa tai tehdä korjauksen, ota yhteyttä:</p>
+      <p class="vi">Vì các điểm chuẩn cụ thể này không được công bố chính thức, chúng tôi dựa vào thông tin từ sinh viên trúng tuyển và bạn bè của họ. Nếu bạn có thông tin xác thực để chia sẻ hoặc cần chỉnh sửa, vui lòng liên hệ:</p>
+      
       <ul>
-        <li><strong>Discord (preferred!):</strong> @sonthebaguette, @787_dreamliner</li>
-        <li><strong>Reddit: u/justanotherbaguette, u/tommy2k06</strong></li>
-        <li><strong>Threads: @lumicrescence</strong></li>
+        <li><strong><span class="en">Discord (preferred!):</span><span class="fi">Discord (suositeltu!):</span><span class="vi">Discord (ưu tiên!):</span></strong> @sonthebaguette, @787_dreamliner</li>
+        <li><strong><span class="en">Reddit:</span><span class="fi">Reddit:</span><span class="vi">Reddit:</span></strong> u/justanotherbaguette, u/tommy2k06</li>
+        <li><strong><span class="en">Threads:</span><span class="fi">Threads:</span><span class="vi">Threads:</span></strong> @lumicrescence</li>
       </ul>
     </section>
 
     <section id="faq">
-      <h2>Frequently Asked Questions</h2>
+      <h2 class="en">Frequently Asked Questions</h2>
+      <h2 class="fi">Usein Kysytyt Kysymykset</h2>
+      <h2 class="vi">Câu hỏi thường gặp</h2>
       
       <details>
-        <summary>Are these scores officially confirmed?</summary>
-        <p>No, these are crowdsourced directly from applicants and students. They represent the lowest known accepted scores for a given major, for this year (2026)'s application cycle.</p>
+        <summary>
+          <span class="en">Are these scores officially confirmed?</span>
+          <span class="fi">Ovatko nämä pisteet virallisesti vahvistettuja?</span>
+          <span class="vi">Những điểm số này đã được xác nhận chính thức chưa?</span>
+        </summary>
+        <p class="en">No, these are crowdsourced directly from applicants and students. They represent the lowest known accepted scores for a given major, for this year (2026)'s application cycle.</p>
+        <p class="fi">Ei, nämä tiedot on kerätty suoraan hakijoilta ja opiskelijoilta. Ne edustavat alimpia tiedettyjä hyväksyttyjä pisteitä kyseiselle hakukohteelle tämän vuoden (2026) hakuprosessissa.</p>
+        <p class="vi">Không, những dữ liệu này được thu thập trực tiếp từ ứng viên và sinh viên. Chúng đại diện cho mức điểm trúng tuyển thấp nhất được biết đến cho một ngành học cụ thể trong chu kỳ tuyển sinh năm nay (2026).</p>
       </details>
+
       <details>
-        <summary>Why is the scholarship cutoff not confirmed for some programs?</summary>
-        <p>Not all scholarship receipients (and other applicants) have made their outcome public, making the exact threshold harder to verify without a large sample size of reported scores.</p>
+        <summary>
+          <span class="en">Why is the scholarship cutoff not confirmed for some programs?</span>
+          <span class="fi">Miksi stipendin pisterajaa ei ole vahvistettu joissakin ohjelmissa?</span>
+          <span class="vi">Tại sao điểm chuẩn học bổng không được xác nhận cho một số ngành?</span>
+        </summary>
+        <p class="en">Not all scholarship receipients (and other applicants) have made their outcome public, making the exact threshold harder to verify without a large sample size of reported scores.</p>
+        <p class="fi">Kaikki stipendin saajat (ja muut hakijat) eivät ole julkaisseet tuloksiaan, mikä tekee tarkan rajan vahvistamisesta vaikeampaa ilman suurta määrää ilmoitettuja tuloksia.</p>
+        <p class="vi">Không phải tất cả người nhận học bổng (và các ứng viên khác) đều công khai kết quả, khiến cho ngưỡng chính xác khó xác minh nếu không có cỡ mẫu lớn từ điểm số được báo cáo.</p>
       </details>
+
       <details>
-        <summary>How often is this data updated?</summary>
-        <p>The table is updated as soon as new admission decisions are released and reported by the applicant community.</p>
+        <summary>
+          <span class="en">How often is this data updated?</span>
+          <span class="fi">Kuinka usein näitä tietoja päivitetään?</span>
+          <span class="vi">Dữ liệu này được cập nhật bao lâu một lần?</span>
+        </summary>
+        <p class="en">The table is updated as soon as new admission decisions are released and reported by the applicant community.</p>
+        <p class="fi">Taulukko päivitetään heti, kun uusia valintapäätöksiä julkaistaan ja hakijayhteisö ilmoittaa niistä.</p>
+        <p class="vi">Bảng sẽ được cập nhật ngay khi các quyết định tuyển sinh mới được công bố và được cộng đồng ứng viên báo cáo.</p>
       </details>
     </section>
   </main>
 
   <footer class="container disclaimer">
-    <p><strong>Disclaimer:</strong> This data is a crowdsourced effort compiled by students and applicants. It is <strong>not</strong> affiliated with, endorsed by, or representative of Aalto University. Official cutoff scores may vary.</p>
+    <p class="en"><strong>Disclaimer:</strong> This data is a crowdsourced effort compiled by students and applicants. It is <strong>not</strong> affiliated with, endorsed by, or representative of Aalto University. Official cutoff scores may vary.</p>
+    <p class="fi"><strong>Vastuuvapauslauseke:</strong> Tämä on opiskelijoiden ja hakijoiden kokoama epävirallinen tietokanta. Se <strong>ei</strong> ole Aalto-yliopiston hyväksymä eikä edusta yliopiston kantaa. Viralliset pisterajat voivat poiketa tästä.</p>
+    <p class="vi"><strong>Lưu ý:</strong> Dữ liệu này được tổng hợp bởi sinh viên và ứng viên. Dữ liệu này <strong>không</strong> liên kết, không được xác nhận bởi và không đại diện cho Đại học Aalto. Điểm chuẩn chính thức có thể thay đổi.</p>
   </footer>
+
+  <script>
+    function setLang(lang) {
+      document.body.className = 'lang-' + lang;
+      
+      document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+      document.getElementById('btn-' + lang).classList.add('active');
+      
+      localStorage.setItem('aalto-lang-pref', lang);
+    }
+
+    window.onload = () => {
+      const savedLang = localStorage.getItem('aalto-lang-pref') || 'en';
+      setLang(savedLang);
+    };
+  </script>
 </body>
 </html>
